@@ -79,7 +79,7 @@ questions = [
         'type': 'mcq',
         'question': 'In Java, what is the result of the expression `10 / 4` when both operands are integers?',
         'options': ['2.5', '2', '3', '2.0', 'Compilation error'],
-        'answer': 'C',
+        'answer': 'B',
         'explanation': 'Integer division discards the decimal part; 10 / 4 = 2.'
     },
     {
@@ -949,7 +949,8 @@ questions = [
             'Perform database operations',
             'Manage network connections'
         ],
-        'answer': 'Manage the layout of components'
+        'answer': 'B',
+        'explanation': 'A layout manager in GUI development is responsible for arranging and managing the placement of components (like buttons, text fields, etc.) within a container such as a window or panel.'
     },
     {
         'type': 'mcq',
@@ -1502,5 +1503,147 @@ questions = [
         ],
         'answer': 'B',
         'explanation': 'Parallel arrays can lead to code that is hard to read and maintain due to the need to keep multiple arrays in sync.'
+    },
+    {
+        'type': 'mcq',
+        'question': 'What will be the output of the following code snippet?\n\n```java\npublic class Test {\n    public static void main(String[] args) {\n        int a = 5;\n        int b = 2;\n        double c = a / b;\n        System.out.println(c);\n    }\n}\n```',
+        'options': ['2', '2.5', '2.0', 'Compilation error', 'Runtime error'],
+        'answer': 'C',
+        'explanation': 'Integer division results in truncation, so the result is 2.0 when implicitly cast to double.'
+    },
+    {
+        'type': 'mcq',
+        'question': 'Which of the following will cause a compilation error in Java?\n\n```java\nclass Test {\n    public void method(final int x) {\n        x = x + 1;\n    }\n}\n```',
+        'options': [
+            'The method modifies a final parameter.',
+            'Final parameters cannot be passed to methods.',
+            'The code will compile successfully.',
+            'Final variables must be initialized immediately.',
+            'Final variables cannot be modified after initialization.'
+        ],
+        'answer': 'A',
+        'explanation': 'Final parameters cannot be reassigned, and attempting to do so will result in a compilation error.'
+    },
+    {
+        'type': 'mcq',
+        'question': 'What will be the output of the following code snippet?\n\n```java\nclass Test {\n    public static void main(String[] args) {\n        String s1 = new String("hello");\n        String s2 = "hello";\n        System.out.println(s1 == s2);\n    }\n}\n```',
+        'options': ['true', 'false', 'Compilation error', 'Runtime error', 'Cannot be determined'],
+        'answer': 'B',
+        'explanation': '`s1` and `s2` refer to different objects; `==` compares references, not values.'
+    },
+    {
+        'type': 'mcq',
+        'question': 'Given the following code, which statement about the output is correct?\n\n```java\nimport java.util.*;\n\npublic class Test {\n    public static void main(String[] args) {\n        List<String> list = new ArrayList<>();\n        list.add("one");\n        list.add("two");\n        list.remove(1);\n        System.out.println(list.get(1));\n    }\n}\n```',
+        'options': ['one', 'two', 'Compilation error', 'IndexOutOfBoundsException', 'Runtime error'],
+        'answer': 'D',
+        'explanation': 'Removing the element at index 1 leaves the list with only one element. Accessing index 1 causes an `IndexOutOfBoundsException`.'
+    },
+    {
+        'type': 'mcq',
+        'question': 'What is the output of the following code snippet?\n\n```java\npublic class Test {\n    public static void main(String[] args) {\n        int[] array = {1, 2, 3};\n        System.out.println(array[3]);\n    }\n}\n```',
+        'options': ['1', '2', '3', 'Compilation error', 'ArrayIndexOutOfBoundsException'],
+        'answer': 'E',
+        'explanation': 'Accessing an out-of-bounds index throws an `ArrayIndexOutOfBoundsException`.'
+    },
+    {
+        'type': 'mcq',
+        'question': 'What will happen if the following code is executed?\n\n```java\nclass Test {\n    public static void main(String[] args) {\n        int result = divide(10, 0);\n    }\n\n    public static int divide(int a, int b) {\n        return a / b;\n    }\n}\n```',
+        'options': [
+            'The program will print "Infinity".',
+            'The program will throw an ArithmeticException.',
+            'The program will compile but crash at runtime.',
+            'The program will output 0.',
+            'The program will not compile.'
+        ],
+        'answer': 'B',
+        'explanation': 'Division by zero with integers results in an `ArithmeticException`.'
+    },
+    {
+        'type': 'mcq',
+        'question': 'Which of the following is NOT true about the `equals()` method in Java?',
+        'options': [
+            'It is defined in the `Object` class.',
+            'It compares two objects for reference equality by default.',
+            'It can be overridden in user-defined classes.',
+            'It is always symmetric, transitive, and reflexive.',
+            'It is used for comparing primitive data types.'
+        ],
+        'answer': 'E',
+        'explanation': '`equals()` is used to compare objects, not primitives. Primitives use `==`.'
+    },
+    {
+        'type': 'mcq',
+        'question': 'What will be the output of the following code snippet?\n\n```java\nclass Test {\n    public static void main(String[] args) {\n        System.out.println(10 + "20" + 30);\n    }\n}\n```',
+        'options': ['60', '102030', '10 20 30', '1030', 'Compilation error'],
+        'answer': 'B',
+        'explanation': 'String concatenation occurs: "10" + "20" = "1020", and "1020" + 30 = "102030".'
+    },
+    {
+        'type': 'mcq',
+        'question': 'What will be the output of the following code snippet?\n\n```java\nclass Test {\n    public static void main(String[] args) {\n        try {\n            int[] arr = {1, 2, 3};\n            System.out.println(arr[5]);\n        } catch (ArrayIndexOutOfBoundsException e) {\n            System.out.println("Caught exception");\n        } finally {\n            System.out.println("Finally block executed");\n        }\n    }\n}\n```',
+        'options': [
+            'Caught exception\nFinally block executed',
+            'Finally block executed',
+            'Caught exception',
+            'Runtime error',
+            'Compilation error'
+        ],
+        'answer': 'A',
+        'explanation': 'The `catch` block handles the exception, and the `finally` block executes afterward.'
+    },
+    {
+        'type': 'mcq',
+        'question': 'Which of the following scenarios will result in a deadlock in Java?\n\n```java\nThread 1 locks Object A, then locks Object B.\nThread 2 locks Object B, then locks Object A.\n```',
+        'options': [
+            'When both threads are started simultaneously.',
+            'When one thread sleeps while holding a lock.',
+            'When neither thread calls notify().',
+            'When both threads attempt to acquire the locks in the opposite order.',
+            'When both threads use synchronized blocks.'
+        ],
+        'answer': 'D',
+        'explanation': 'A deadlock occurs when two threads hold locks and wait for each other to release them in reverse order.'
+    },
+    {
+        'type': 'mcq',
+        'question': 'What will be the output of the following program?\n\n```java\nclass Test {\n    public static void main(String[] args) {\n        String s1 = "Hello";\n        String s2 = new String("Hello");\n        System.out.println(s1.equals(s2));\n        System.out.println(s1 == s2);\n    }\n}\n```',
+        'options': [
+            'true\ntrue',
+            'true\nfalse',
+            'false\nfalse',
+            'false\ntrue',
+            'Compilation error'
+        ],
+        'answer': 'B',
+        'explanation': '`equals()` compares values and returns true. `==` compares references, which are different here.'
+    },
+    {
+        'type': 'mcq',
+        'question': 'What is the result of the following code?\n\n```java\nclass Test {\n    public static void main(String[] args) {\n        Object obj = null;\n        System.out.println(obj instanceof String);\n    }\n}\n```',
+        'options': ['true', 'false', 'Compilation error', 'Runtime error', 'Cannot be determined'],
+        'answer': 'B',
+        'explanation': 'The `instanceof` operator returns false if the object is null.'
+    },
+    {
+        'type': 'mcq',
+        'question': 'What is the output of the following code snippet?\n\n```java\nclass Test {\n    public static void main(String[] args) {\n        int x = 0;\n        x += ++x + x++;\n        System.out.println(x);\n    }\n}\n```',
+        'options': ['2', '3', '4', '5', 'Compilation error'],
+        'answer': 'B',
+        'explanation': 'The value of `x` changes during the operation. It evaluates as `x = 0 + 1 + 1`.'
+    },
+    {
+        'type': 'mcq',
+        'question': 'What will happen if the following code is executed?\n\n```java\nclass Parent {\n    public void display() {\n        System.out.println("Parent");\n    }\n}\n\nclass Child extends Parent {\n    @Override\n    public void display() {\n        System.out.println("Child");\n    }\n\n    public static void main(String[] args) {\n        Parent obj = new Child();\n        obj.display();\n    }\n}\n```',
+        'options': ['Parent', 'Child', 'Compilation error', 'Runtime error', 'Cannot be determined'],
+        'answer': 'B',
+        'explanation': 'Dynamic method dispatch calls the overridden method in the child class.'
+    },
+    {
+        'type': 'mcq',
+        'question': 'Which of the following keywords can be used to prevent a class from being subclassed?',
+        'options': ['static', 'final', 'abstract', 'synchronized', 'private'],
+        'answer': 'B',
+        'explanation': 'The `final` keyword prevents a class from being extended.'
     }
+
 ]

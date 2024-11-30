@@ -1,50 +1,121 @@
 import tkinter as tk
-from tkinter import messagebox
+from tkinter import messagebox, simpledialog  # Importer simpledialog pour la saisie utilisateur
 import random
-from questions_data import questions  # Import the questions from the separate file
+from questions_data import questions  # Importer les questions depuis le fichier séparé
 
 class QuizApp:
     def __init__(self, master):
         self.master = master
         self.master.title("Java Quiz")
         self.master.geometry("700x500")
+        self.master.configure(bg="black")  # Définir l'arrière-plan en noir
         self.score = 0
+        self.total_attempted = 0  # Pour calculer le pourcentage
         self.current_question = 0
         self.wrong_questions = []
-        self.questions = questions.copy()
-        random.shuffle(self.questions)
-        self.total_questions = len(self.questions)
+
+        # Copier les questions et les mélanger
+        self.all_questions = questions.copy()
+        random.shuffle(self.all_questions)
+
+        # Demander à l'utilisateur combien de questions il souhaite répondre
+        num_questions = simpledialog.askinteger(
+            "Nombre de questions",
+            "Combien de questions souhaitez-vous répondre ?",
+            minvalue=1,
+            maxvalue=len(self.all_questions)
+        )
+
+        if num_questions is None:
+            # L'utilisateur a annulé, quitter le quiz
+            self.master.quit()
+            return
+        else:
+            # Sélectionner aléatoirement le nombre de questions souhaité
+            self.questions = random.sample(self.all_questions, num_questions)
+            self.total_questions = len(self.questions)
+
+        self.selection_made = False  # Indicateur pour empêcher les sélections multiples
 
         self.create_widgets()
         self.display_question()
 
+        # Lier les événements de touches pour la saisie au clavier
+        self.master.bind('<Key>', self.key_pressed)
+
     def create_widgets(self):
-        self.question_label = tk.Label(self.master, text="", wraplength=650, justify="left", font=("Arial", 12))
+        self.question_label = tk.Label(
+            self.master,
+            text="",
+            wraplength=650,
+            justify="left",
+            font=("Arial", 12),
+            fg="white",  # Couleur du texte en blanc
+            bg="black"   # Arrière-plan en noir
+        )
         self.question_label.pack(pady=20)
 
         self.option_buttons = []
-        for i in range(5):  # this is for 5 options per question
-            btn = tk.Button(self.master, text="", width=60, anchor="w", command=lambda idx=i: self.check_answer(idx))
+        for i in range(5):  # En supposant un maximum de 5 options par question
+            btn = tk.Button(
+                self.master,
+                text="",
+                width=60,
+                anchor="w",
+                font=("Arial", 12),
+                fg="white",  # Couleur du texte en blanc
+                bg="black",  # Arrière-plan en noir
+                command=lambda idx=i: self.check_answer(idx)
+            )
             btn.pack(pady=5)
             self.option_buttons.append(btn)
 
-        # For flashcards
-        self.flip_button = tk.Button(self.master, text="Show Answer", command=self.show_flashcard_answer)
+        # Pour les flashcards
+        self.flip_button = tk.Button(
+            self.master,
+            text="Afficher la réponse",
+            font=("Arial", 12),
+            fg="white",
+            bg="black",
+            command=self.show_flashcard_answer
+        )
         self.flip_button.pack(pady=10)
-        self.flip_button.pack_forget()  
+        self.flip_button.pack_forget()  # Masquer initialement
 
-        self.explanation_label = tk.Label(self.master, text="", wraplength=650, justify="left", font=("Arial", 12))
+        self.explanation_label = tk.Label(
+            self.master,
+            text="",
+            wraplength=650,
+            justify="left",
+            font=("Arial", 12),
+            fg="white",
+            bg="black"
+        )
         self.explanation_label.pack(pady=20)
-        self.explanation_label.pack_forget()  
+        self.explanation_label.pack_forget()  # Masquer initialement
 
-        self.next_button = tk.Button(self.master, text="Next", command=self.next_question)
+        self.next_button = tk.Button(
+            self.master,
+            text="Suivant",
+            font=("Arial", 12),
+            fg="white",
+            bg="black",
+            command=self.next_question
+        )
         self.next_button.pack(pady=10)
-        self.next_button.pack_forget()  
+        self.next_button.pack_forget()  # Masquer initialement
 
-        self.progress_label = tk.Label(self.master, text="")
+        self.progress_label = tk.Label(
+            self.master,
+            text="",
+            font=("Arial", 12),
+            fg="white",
+            bg="black"
+        )
         self.progress_label.pack(pady=10)
 
     def display_question(self):
+        self.selection_made = False  # Réinitialiser l'indicateur de sélection
         self.explanation_label.pack_forget()
         self.next_button.pack_forget()
         self.flip_button.pack_forget()
@@ -54,71 +125,107 @@ class QuizApp:
         if self.current_question < len(self.questions):
             q = self.questions[self.current_question]
             self.question_label.config(text=f"Q{self.current_question + 1}: {q['question']}")
-            self.progress_label.config(text=f"Question {self.current_question + 1} of {self.total_questions}")
+            self.progress_label.config(text=f"Question {self.current_question + 1} sur {self.total_questions}")
 
             if q['type'] == 'mcq':
                 options = q['options']
                 for i, option in enumerate(options):
-                    self.option_buttons[i].config(text=f"{chr(65 + i)}. {option}", bg="SystemButtonFace", state="normal")
+                    self.option_buttons[i].config(text=f"{chr(65 + i)}. {option}", bg="black", fg="white", state="normal")
                     self.option_buttons[i].pack(pady=5)
                 for i in range(len(options), 5):
-                    self.option_buttons[i].pack_forget()  # Hide unused buttons
+                    self.option_buttons[i].pack_forget()  # Masquer les boutons inutilisés
             elif q['type'] == 'flashcard':
                 self.flip_button.pack(pady=10)
         else:
+            # Calculer le pourcentage
+            percentage = (self.score / self.total_attempted) * 100 if self.total_attempted > 0 else 0
+            # Afficher le score après chaque passage
+            messagebox.showinfo(
+                "Fin du parcours",
+                f"Vous avez terminé ce parcours !\nVotre score : {self.score}/{self.total_attempted}\nPourcentage : {percentage:.2f}%"
+            )
+
             if self.wrong_questions:
+                # Réinitialiser pour le prochain passage
                 self.questions = self.wrong_questions.copy()
                 self.wrong_questions = []
                 self.current_question = 0
                 random.shuffle(self.questions)
                 self.total_questions = len(self.questions)
-                messagebox.showinfo("Retry", "Now retrying the questions you got wrong.")
+                # Réinitialiser le score et le total tenté pour le nouveau passage
+                self.score = 0
+                self.total_attempted = 0
+                messagebox.showinfo("Réessayer", "Nous allons maintenant réessayer les questions que vous avez mal répondues.")
                 self.display_question()
             else:
-                messagebox.showinfo("Quiz Completed", f"You have completed the quiz!\nYour score: {self.score}")
+                messagebox.showinfo("Quiz Terminé", "Vous avez répondu correctement à toutes les questions !")
                 self.master.quit()
 
     def check_answer(self, idx):
+        if self.selection_made:
+            return  # Ignorer si une sélection a déjà été faite
+        self.selection_made = True
         selected_option = chr(65 + idx)
         q = self.questions[self.current_question]
         correct_answer = q['answer']
+        self.total_attempted += 1  # Incrémenter le total des questions tentées
+
         if selected_option == correct_answer:
-            self.option_buttons[idx].config(bg="green")
+            self.option_buttons[idx].config(bg="green", fg="white")
             self.score += 1
             self.master.after(500, self.next_question)
         else:
-            self.option_buttons[idx].config(bg="red")
+            self.option_buttons[idx].config(bg="red", fg="white")
             correct_idx = ord(correct_answer) - 65
-            self.option_buttons[correct_idx].config(bg="green")
+            if 0 <= correct_idx < len(self.option_buttons):
+                self.option_buttons[correct_idx].config(bg="green", fg="white")
             self.wrong_questions.append(self.questions[self.current_question])
-            # Show explanation
+            # Afficher l'explication
             self.show_explanation()
-        # Disable all buttons after an answer is selected
+        # Désactiver tous les boutons après une sélection
         for btn in self.option_buttons:
             btn.config(state="disabled")
 
     def show_explanation(self):
         q = self.questions[self.current_question]
-        self.explanation_label.config(text=f"Explanation: {q.get('explanation', 'No explanation provided.')}")
+        self.explanation_label.config(text=f"Explication : {q.get('explanation', 'Aucune explication fournie.')}")
         self.explanation_label.pack(pady=20)
         self.next_button.pack(pady=10)
 
     def show_flashcard_answer(self):
         q = self.questions[self.current_question]
-        self.explanation_label.config(text=f"Answer: {q.get('answer', 'No answer provided.')}\n\nExplanation: {q.get('explanation', '')}")
+        self.explanation_label.config(
+            text=f"Réponse : {q.get('answer', 'Aucune réponse fournie.')}\n\nExplication : {q.get('explanation', '')}"
+        )
         self.explanation_label.pack(pady=20)
         self.flip_button.pack_forget()
         self.next_button.pack(pady=10)
 
     def next_question(self):
         self.current_question += 1
-        # Reset UI elements
+        # Réinitialiser les éléments de l'interface utilisateur
         self.explanation_label.config(text="")
         self.explanation_label.pack_forget()
         self.next_button.pack_forget()
         for btn in self.option_buttons:
-            btn.config(state="normal", bg="SystemButtonFace")
+            btn.config(state="normal", bg="black", fg="white")
         self.display_question()
+
+    def key_pressed(self, event):
+        if self.selection_made:
+            # Si une sélection a déjà été faite, n'autoriser que Entrée pour continuer
+            if event.keysym == 'Return' and self.next_button.winfo_ismapped():
+                self.next_question()
+            return
+
+        if event.char.lower() in ['a', 'b', 'c', 'd', 'e']:
+            idx = ord(event.char.lower()) - ord('a')
+            # S'assurer que idx est dans la plage des options
+            if 0 <= idx < len(self.questions[self.current_question]['options']):
+                self.check_answer(idx)
+        elif event.keysym == 'Return':
+            if self.next_button.winfo_ismapped():
+                self.next_question()
 
 if __name__ == "__main__":
     root = tk.Tk()
