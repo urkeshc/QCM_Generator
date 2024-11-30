@@ -960,7 +960,8 @@ questions = [
             'GridLayout',
             'BoxLayout'
         ],
-        'answer': 'GridLayout'
+        'answer': 'C',
+        'explanation': 'GridLayout places components in a grid of cells, each the same size.'
     },
     {
         'type': 'mcq',
@@ -971,7 +972,8 @@ questions = [
             'BoxLayout',
             'GridBagLayout'
         ],
-        'answer': 'GridBagLayout'
+        'answer': 'D',
+        'explanation': 'GridBagLayout offers complex layouts with components of varying sizes and positions.'
     },
     {
         'type': 'mcq',
@@ -982,7 +984,8 @@ questions = [
             'A bounded type',
             'A primitive type'
         ],
-        'answer': 'Any type'
+        'answer': 'B',
+        'explanation': 'The wildcard \'?\' represents an unknown type in generics, allowing for flexibility.'
     },
     {
         'type': 'mcq',
@@ -993,161 +996,20 @@ questions = [
             'By enabling multiple inheritance',
             'By reducing memory usage'
         ],
-        'answer': 'By enforcing type constraints at compile time'
+        'answer': 'B',
+        'explanation': 'Generics enforce type constraints at compile time, reducing runtime type errors.'
     },
     {
         'type': 'mcq',
-        'question': 'Which of the following is NOT a type of layout manager in Java Swing?',
+        'question': 'What is the primary purpose of a layout manager in GUI development?',
         'options': [
-            'BorderLayout',
-            'FlowLayout',
-            'StackLayout',
-            'BoxLayout'
+            'Handle user authentication',
+            'Manage the layout of components',
+            'Perform database operations',
+            'Manage network connections'
         ],
-        'answer': 'StackLayout'
-    },
-    {
-        'type': 'mcq',
-        'question': 'What is the role of an event listener in the Java event model?',
-        'options': [
-            'To generate events',
-            'To store event data',
-            'To respond to events',
-            'To ignore events'
-        ],
-        'answer': 'To respond to events'
-    },
-    {
-        'type': 'mcq',
-        'question': 'Which layout manager stacks components and shows one at a time, similar to cards?',
-        'options': [
-            'CardLayout',
-            'GridLayout',
-            'FlowLayout',
-            'BorderLayout'
-        ],
-        'answer': 'CardLayout'
-    },
-    {
-        'type': 'mcq',
-        'question': 'What keyword is used to define a generic class in Java?',
-        'options': [
-            'generic',
-            'template',
-            'class',
-            'class ClassName<T>'
-        ],
-        'answer': 'class ClassName<T>'
-    },
-    {
-        'type': 'mcq',
-        'question': 'What is the main difference between Generics and Reflection in Java?',
-        'options': [
-            'Generics operate at runtime, Reflection at compile time',
-            'Generics provide dynamic behavior, Reflection provides type safety',
-            'Generics operate at compile time, Reflection at runtime',
-            'There is no difference'
-        ],
-        'answer': 'Generics operate at compile time, Reflection at runtime'
-    },
-    {
-        'type': 'mcq',
-        'question': 'How do bounded types in Generics restrict acceptable types?',
-        'options': [
-            'By specifying a superclass or interface',
-            'By allowing any type',
-            'By limiting to primitive types',
-            'By using wildcards'
-        ],
-        'answer': 'By specifying a superclass or interface'
-    },
-    {
-        'type': 'mcq',
-        'question': 'Which of the following is an example of a bounded type in Generics?',
-        'options': [
-            '<T>',
-            '<?>',
-            '<T extends Number>',
-            '<T super Integer>'
-        ],
-        'answer': '<T extends Number>'
-    },
-    {
-        'type': 'mcq',
-        'question': 'What package in Java provides components for building GUIs like tables and buttons?',
-        'options': [
-            'java.awt',
-            'javax.swing',
-            'java.io',
-            'java.net'
-        ],
-        'answer': 'javax.swing'
-    },
-    {
-        'type': 'mcq',
-        'question': 'Which layout manager would you use to arrange components in a single row or column?',
-        'options': [
-            'BoxLayout',
-            'FlowLayout',
-            'BorderLayout',
-            'GridBagLayout'
-        ],
-        'answer': 'BoxLayout'
-    },
-    {
-        'type': 'mcq',
-        'question': 'What is the benefit of using anonymous classes for event listeners in GUIs?',
-        'options': [
-            'They require less memory',
-            'They allow handling multiple actions in one class',
-            'They provide a concise way to define event-handling behavior',
-            'They improve runtime performance'
-        ],
-        'answer': 'They provide a concise way to define event-handling behavior'
-    },
-    {
-        'type': 'mcq',
-        'question': 'In Generics, what does the \'?\' wildcard allow?',
-        'options': [
-            'Only one specific type',
-            'Multiple types with unknown specifics',
-            'Primitive types only',
-            'No types'
-        ],
-        'answer': 'Multiple types with unknown specifics'
-    },
-    {
-        'type': 'mcq',
-        'question': 'Which method is used to set a BorderLayout in a JFrame?',
-        'options': [
-            'setLayout(new FlowLayout())',
-            'setLayout(new BorderLayout())',
-            'setLayout(new GridLayout())',
-            'setLayout(new BoxLayout())'
-        ],
-        'answer': 'setLayout(new BorderLayout())'
-    },
-    {
-        'type': 'mcq',
-        'question': 'What does the GridBagConstraints class help with in GridBagLayout?',
-        'options': [
-            'Defining row and column sizes',
-            'Specifying component constraints',
-            'Managing event listeners',
-            'Creating new components'
-        ],
-        'answer': 'Specifying component constraints'
-    },
-    {
-        'type': 'mcq',
-        'question': 'How do Generics eliminate the need for manual casting?',
-        'options': [
-            'By using wildcard types',
-            'By ensuring type safety at compile time',
-            'By allowing runtime type checks',
-            'By supporting multiple inheritance'
-        ],
-        'answer': 'By ensuring type safety at compile time'
+        'answer': 'B',
+        'explanation': 'Layout managers are responsible for arranging GUI components within a container.'
     },
     {
         'type': 'mcq',
@@ -1158,172 +1020,56 @@ questions = [
             'JTextField',
             'JPanel'
         ],
-        'answer': 'JButton'
+        'answer': 'B',  # Use the option letter corresponding to 'JButton'
+        'explanation': 'JButton is the Swing component used to create clickable buttons in GUIs.'
     },
     {
         'type': 'mcq',
-        'question': 'What is the purpose of the ActionListener interface in Java Swing?',
+        'question': 'What is the role of an event listener in the Java event model?',
         'options': [
-            'To create new GUI components',
-            'To handle action events like button clicks',
-            'To manage layout managers',
-            'To perform background tasks'
+            'To generate events',
+            'To store event data',
+            'To respond to events',
+            'To ignore events'
         ],
-        'answer': 'To handle action events like button clicks'
+        'answer': 'C',
+        'explanation': 'An event listener responds to events by executing specific actions when an event occurs.'
     },
     {
         'type': 'mcq',
-        'question': 'Which layout manager places every element in the same row?',
+        'question': 'Which layout manager stacks components and shows one at a time, similar to cards?',
         'options': [
-            'FlowLayout',
-            'BoxLayout',
+            'CardLayout',
             'GridLayout',
+            'FlowLayout',
             'BorderLayout'
         ],
-        'answer': 'FlowLayout'
+        'answer': 'A',
+        'explanation': 'CardLayout manages multiple components, allowing one to be visible at a time, similar to a deck of cards.'
     },
     {
         'type': 'mcq',
-        'question': 'What does the \'extends\' keyword signify in bounded types?',
+        'question': 'What keyword is used to define a generic class in Java?',
         'options': [
-            'Inheritance from a superclass',
-            'Implementation of an interface',
-            'Both inheritance and interface implementation',
-            'None of the above'
+            '`generic`',
+            '`template`',
+            '`class`',
+            '`class ClassName<T>`'
         ],
-        'answer': 'Both inheritance and interface implementation'
+        'answer': 'D',
+        'explanation': 'Generics in Java are defined by specifying type parameters in angle brackets after the class name, such as `class ClassName<T>`.'
     },
     {
         'type': 'mcq',
-        'question': 'Which of the following best describes Generic interfaces?',
+        'question': 'How do bounded types in Generics restrict acceptable types?',
         'options': [
-            'Interfaces that work with a single data type',
-            'Interfaces that work with different data types without separate code',
-            'Interfaces that use reflection',
-            'Interfaces that cannot use Generics'
+            'By specifying a superclass or interface',
+            'By allowing any type',
+            'By limiting to primitive types',
+            'By using wildcards'
         ],
-        'answer': 'Interfaces that work with different data types without separate code'
-    },
-    {
-        'type': 'mcq',
-        'question': 'In Java Swing, which layout manager would you use for a login form with labels and text fields aligned?',
-        'options': [
-            'FlowLayout',
-            'GridLayout',
-            'BorderLayout',
-            'CardLayout'
-        ],
-        'answer': 'GridLayout'
-    },
-    {
-        'type': 'mcq',
-        'question': 'What does the method \'add\' do in the context of GridBagLayout?',
-        'options': [
-            'Adds a new row to the grid',
-            'Adds a component with specific constraints',
-            'Adds a new column to the grid',
-            'Adds event listeners to components'
-        ],
-        'answer': 'Adds a component with specific constraints'
-    },
-    {
-        'type': 'mcq',
-        'question': 'How does Generics improve code reusability?',
-        'options': [
-            'By allowing methods to accept any number of parameters',
-            'By enabling classes and methods to operate on specified data types',
-            'By reducing the size of the codebase',
-            'By simplifying control structures'
-        ],
-        'answer': 'By enabling classes and methods to operate on specified data types'
-    },
-    {
-        'type': 'mcq',
-        'question': 'Which Swing package provides event handling mechanisms?',
-        'options': [
-            'java.awt.event',
-            'javax.swing.event',
-            'java.io',
-            'javax.net'
-        ],
-        'answer': 'javax.swing.event'
-    },
-    {
-        'type': 'mcq',
-        'question': 'What is the benefit of using CardLayout in a GUI application?',
-        'options': [
-            'It simplifies the layout to a single row',
-            'It allows switching between different panels',
-            'It automatically resizes components',
-            'It manages event listeners efficiently'
-        ],
-        'answer': 'It allows switching between different panels'
-    },
-    {
-        'type': 'mcq',
-        'question': 'In Generics, what ensures type safety at compile time?',
-        'options': [
-            'Using raw types',
-            'Using wildcards',
-        'Specifying type parameters',
-            'Using reflection'
-        ],
-        'answer': 'Specifying type parameters'
-    },
-    {
-        'type': 'mcq',
-        'question': 'What is the time complexity of binary search?',
-        'options': [
-            'O(n)',
-            'O(n log n)',
-            'O(log n)',
-            'O(1)'
-        ],
-        'answer': 'O(log n)'
-    },
-    {
-        'type': 'mcq',
-        'question': 'Which search algorithm has a time complexity of O(n)?',
-        'options': [
-            'Binary Search',
-            'Linear Search',
-            'Merge Sort',
-            'Heap Sort'
-        ],
-        'answer': 'Linear Search'
-    },
-    {
-        'type': 'mcq',
-        'question': 'What is the time complexity of Selection Sort?',
-        'options': [
-            'O(n)',
-            'O(n^2)',
-            'O(n log n)',
-            'O(log n)'
-        ],
-        'answer': 'O(n^2)'
-    },
-    {
-        'type': 'mcq',
-        'question': 'Which sorting algorithm divides the array into subarrays, sorts them, and then merges them?',
-        'options': [
-            'Quick Sort',
-            'Merge Sort',
-            'Heap Sort',
-            'Bubble Sort'
-        ],
-        'answer': 'Merge Sort'
-    },
-    {
-        'type': 'mcq',
-        'question': 'What is the primary characteristic of Heap Sort\'s time complexity?',
-        'options': [
-            'O(n)',
-            'O(n^2)',
-            'O(n log n)',
-            'O(log n)'
-        ],
-        'answer': 'O(n log n)'
+        'answer': 'A',
+        'explanation': 'Bounded types use the `extends` keyword to restrict type parameters to specific superclasses or interfaces.'
     },
     {
         'type': 'mcq',
@@ -1334,73 +1080,20 @@ questions = [
             'short',
             'byte'
         ],
-        'answer': 'long'
+        'answer': 'B',
+        'explanation': 'In Java, the `long` data type is a 64-bit two\'s complement integer.'
     },
     {
         'type': 'mcq',
-        'question': 'What is the default value of a boolean array in Java?',
+        'question': 'What is the main difference between Generics and Reflection in Java?',
         'options': [
-            'true',
-            'false',
-            '0',
-            'null'
+            'Generics operate at runtime, Reflection at compile time',
+            'Generics provide dynamic behavior, Reflection provides type safety',
+            'Generics operate at compile time, Reflection at runtime',
+            'There is no difference'
         ],
-        'answer': 'false'
-    },
-    {
-        'type': 'mcq',
-        'question': 'How do you define an array of integers in Java?',
-        'options': [
-            'int array;',
-            'int[] array;',
-            'array int[];',
-            'integer array[];'
-        ],
-        'answer': 'int[] array;'
-    },
-    {
-        'type': 'mcq',
-        'question': 'Which method is used to retrieve the length of an array in Java?',
-        'options': [
-            'length()',
-            'size()',
-            'getLength()',
-            'array.length'
-        ],
-        'answer': 'array.length'
-    },
-    {
-        'type': 'mcq',
-        'question': 'What is the purpose of the ArrayList class in Java?',
-        'options': [
-            'To create fixed-size arrays',
-            'To provide dynamic array functionality',
-            'To perform mathematical operations',
-            'To handle file I/O'
-        ],
-        'answer': 'To provide dynamic array functionality'
-    },
-    {
-        'type': 'mcq',
-        'question': 'Which of the following is an immutable object in Java?',
-        'options': [
-            'StringBuilder',
-            'String',
-            'ArrayList',
-            'HashMap'
-        ],
-        'answer': 'String'
-    },
-    {
-        'type': 'mcq',
-        'question': 'What does the `charAt` method do in Java strings?',
-        'options': [
-            'Returns the length of the string',
-            'Extracts a substring',
-            'Returns the character at a specific index',
-            'Converts the string to uppercase'
-        ],
-        'answer': 'Returns the character at a specific index'
+        'answer': 'C',
+        'explanation': 'Generics provide type safety at compile time, while Reflection allows inspection and manipulation of code at runtime.'
     },
     {
         'type': 'mcq',
@@ -1411,7 +1104,380 @@ questions = [
             '\\b',
             '\\r'
         ],
-        'answer': '\\n'
+        'answer': 'B',
+        'explanation': 'The `\\n` escape sequence represents a newline character.'
+    },
+    {
+        'type': 'mcq',
+        'question': 'How do bounded types in Generics restrict acceptable types?',
+        'options': [
+            'By specifying a superclass or interface',
+            'By allowing any type',
+            'By limiting to primitive types',
+            'By using wildcards'
+        ],
+        'answer': 'A',
+        'explanation': 'Bounded types use the `extends` keyword to specify that type parameters must be subclasses of a particular class or implement a specific interface.'
+    },
+    {
+        'type': 'mcq',
+        'question': 'What keyword is used to define a generic class in Java?',
+        'options': [
+            '`generic`',
+            '`template`',
+            '`class`',
+            '`class ClassName<T>`'
+        ],
+        'answer': 'D',
+        'explanation': 'Generics in Java are defined by specifying type parameters in angle brackets after the class name, like `class ClassName<T>`.'
+    },
+    {
+        'type': 'mcq',
+        'question': 'Which of the following is an example of a bounded type in Generics?',
+        'options': [
+            '`<T>`',
+            '`<?>`',
+            '`<T extends Number>`',
+            '`<T super Integer>`'
+        ],
+        'answer': 'C',
+        'explanation': '`<T extends Number>` is a bounded type where `T` can be any type that extends `Number`.'
+    },
+    {
+        'type': 'mcq',
+        'question': 'What package in Java provides components for building GUIs like tables and buttons?',
+        'options': [
+            '`java.awt`',
+            '`javax.swing`',
+            '`java.io`',
+            '`java.net`'
+        ],
+        'answer': 'B',
+        'explanation': '`javax.swing` provides a set of "lightweight" components that work the same on all platforms.'
+    },
+    {
+        'type': 'mcq',
+        'question': 'Which layout manager would you use to arrange components in a single row or column?',
+        'options': [
+            'BoxLayout',
+            'FlowLayout',
+            'BorderLayout',
+            'GridBagLayout'
+        ],
+        'answer': 'A',
+        'explanation': 'BoxLayout places components either on top of each other or in a row.'
+    },
+    {
+        'type': 'mcq',
+        'question': 'What is the benefit of using anonymous classes for event listeners in GUIs?',
+        'options': [
+            'They require less memory',
+            'They allow handling multiple actions in one class',
+            'They provide a concise way to define event-handling behavior',
+            'They improve runtime performance'
+        ],
+        'answer': 'C',
+        'explanation': 'Anonymous classes let you declare and instantiate a class at the same time, providing a quick way to implement event listeners.'
+    },
+    {
+        'type': 'mcq',
+        'question': 'In Generics, what does the \'?\' wildcard allow?',
+        'options': [
+            'Only one specific type',
+            'Multiple types with unknown specifics',
+            'Primitive types only',
+            'No types'
+        ],
+        'answer': 'B',
+        'explanation': 'The wildcard `?` represents an unknown type and allows for flexibility when the exact type is not important.'
+    },
+    {
+        'type': 'mcq',
+        'question': 'Which method is used to set a BorderLayout in a JFrame?',
+        'options': [
+            '`setLayout(new FlowLayout())`',
+            '`setLayout(new BorderLayout())`',
+            '`setLayout(new GridLayout())`',
+            '`setLayout(new BoxLayout())`'
+        ],
+        'answer': 'B',
+        'explanation': 'You set the layout manager of a container by calling `setLayout(new BorderLayout())`.'
+    },
+    {
+        'type': 'mcq',
+        'question': 'What does the GridBagConstraints class help with in GridBagLayout?',
+        'options': [
+            'Defining row and column sizes',
+            'Specifying component constraints',
+            'Managing event listeners',
+            'Creating new components'
+        ],
+        'answer': 'B',
+        'explanation': '`GridBagConstraints` specify constraints for components that are laid out using `GridBagLayout`, such as grid position and size.'
+    },
+    {
+        'type': 'mcq',
+        'question': 'How do Generics eliminate the need for manual casting?',
+        'options': [
+            'By using wildcard types',
+            'By ensuring type safety at compile time',
+            'By allowing runtime type checks',
+            'By supporting multiple inheritance'
+        ],
+        'answer': 'B',
+        'explanation': 'Generics enforce type constraints at compile time, removing the need for manual casting and reducing the risk of runtime errors.'
+    },
+    {
+        'type': 'mcq',
+        'question': 'What is the purpose of the ActionListener interface in Java Swing?',
+        'options': [
+            'To create new GUI components',
+            'To handle action events like button clicks',
+            'To manage layout managers',
+            'To perform background tasks'
+        ],
+        'answer': 'B',
+        'explanation': 'The `ActionListener` interface is used to handle action events, such as button clicks, by implementing the `actionPerformed` method.'
+    },
+    {
+        'type': 'mcq',
+        'question': 'Which layout manager places every element in the same row?',
+        'options': [
+            'FlowLayout',
+            'BoxLayout',
+            'GridLayout',
+            'BorderLayout'
+        ],
+        'answer': 'A',
+        'explanation': 'The `FlowLayout` manager arranges components in a row, wrapping them to the next line if the row exceeds the container\'s width.'
+    },
+    {
+        'type': 'mcq',
+        'question': 'What does the \'extends\' keyword signify in bounded types?',
+        'options': [
+            'Inheritance from a superclass',
+            'Implementation of an interface',
+            'Both inheritance and interface implementation',
+            'None of the above'
+        ],
+        'answer': 'C',
+        'explanation': 'The `extends` keyword in bounded types signifies that the type parameter can be a subclass or implement an interface, combining inheritance and interface implementation.'
+    },
+    {
+        'type': 'mcq',
+        'question': 'Which of the following best describes Generic interfaces?',
+        'options': [
+            'Interfaces that work with a single data type',
+            'Interfaces that work with different data types without separate code',
+            'Interfaces that use reflection',
+            'Interfaces that cannot use Generics'
+        ],
+        'answer': 'B',
+        'explanation': 'Generic interfaces allow the same interface to work with multiple data types without requiring separate implementations for each type.'
+    },
+    {
+        'type': 'mcq',
+        'question': 'In Java Swing, which layout manager would you use for a login form with labels and text fields aligned?',
+        'options': [
+            'FlowLayout',
+            'GridLayout',
+            'BorderLayout',
+            'CardLayout'
+        ],
+        'answer': 'B',
+        'explanation': 'The `GridLayout` manager arranges components in a grid of rows and columns, making it suitable for aligning labels and text fields in a form.'
+    },
+    {
+        'type': 'mcq',
+        'question': 'What does the method \'add\' do in the context of GridBagLayout?',
+        'options': [
+            'Adds a new row to the grid',
+            'Adds a component with specific constraints',
+            'Adds a new column to the grid',
+            'Adds event listeners to components'
+        ],
+        'answer': 'B',
+        'explanation': 'In GridBagLayout, the `add` method places a component using GridBagConstraints.'
+    },
+    {
+        'type': 'mcq',
+        'question': 'How does Generics improve code reusability?',
+        'options': [
+            'By allowing methods to accept any number of parameters',
+            'By enabling classes and methods to operate on specified data types',
+            'By reducing the size of the codebase',
+            'By simplifying control structures'
+        ],
+        'answer': 'B',
+        'explanation': 'Generics enable classes and methods to operate on specified data types, allowing the same code to work with different types while ensuring type safety.'
+    },
+    {
+        'type': 'mcq',
+        'question': 'Which Swing package provides event handling mechanisms?',
+        'options': [
+            'java.awt.event',
+            'javax.swing.event',
+            'java.io',
+            'javax.net'
+        ],
+        'answer': 'B',
+        'explanation': 'The `javax.swing.event` package provides classes and interfaces for event handling mechanisms in Swing-based GUIs.'
+    },
+    {
+        'type': 'mcq',
+        'question': 'What is the benefit of using CardLayout in a GUI application?',
+        'options': [
+            'It simplifies the layout to a single row',
+            'It allows switching between different panels',
+            'It automatically resizes components',
+            'It manages event listeners efficiently'
+        ],
+        'answer': 'B',
+        'explanation': 'The `CardLayout` manager allows for switching between multiple panels, making it ideal for creating wizard-style interfaces or tabbed panels.'
+    },
+    {
+        'type': 'mcq',
+        'question': 'In Generics, what ensures type safety at compile time?',
+        'options': [
+            'Using raw types',
+            'Using wildcards',
+            'Specifying type parameters',
+            'Using reflection'
+        ],
+        'answer': 'C',
+        'explanation': 'Specifying type parameters ensures type safety at compile time by restricting the types that can be used with a generic class or method.'
+    },
+    {
+        'type': 'mcq',
+        'question': 'What is the time complexity of binary search?',
+        'options': [
+            'O(n)',
+            'O(n log n)',
+            'O(log n)',
+            'O(1)'
+        ],
+        'answer': 'C',
+        'explanation': 'Binary search divides the search space in half at each step, resulting in a time complexity of O(log n).'
+    },
+    {
+        'type': 'mcq',
+        'question': 'Which search algorithm has a time complexity of O(n)?',
+        'options': [
+            'Binary Search',
+            'Linear Search',
+            'Merge Sort',
+            'Heap Sort'
+        ],
+        'answer': 'B',
+        'explanation': 'Linear search has a time complexity of O(n) because it checks each element in the array one by one until the target is found or the array ends.'
+    },
+    {
+        'type': 'mcq',
+        'question': 'What is the time complexity of Selection Sort?',
+        'options': [
+            'O(n)',
+            'O(n^2)',
+            'O(n log n)',
+            'O(log n)'
+        ],
+        'answer': 'B',
+        'explanation': 'Selection Sort has a time complexity of O(n^2) because it involves nested loops: one to iterate through the elements and another to find the minimum element in the remaining list.'
+    },
+    {
+        'type': 'mcq',
+        'question': 'Which sorting algorithm divides the array into subarrays, sorts them, and then merges them?',
+        'options': [
+            'Quick Sort',
+            'Merge Sort',
+            'Heap Sort',
+            'Bubble Sort'
+        ],
+        'answer': 'B',
+        'explanation': 'Merge Sort divides the array into smaller subarrays, sorts them recursively, and then merges the sorted subarrays to produce the final sorted array.'
+    },
+    {
+        'type': 'mcq',
+        'question': 'What is the primary characteristic of Heap Sort\'s time complexity?',
+        'options': [
+            'O(n)',
+            'O(n^2)',
+            'O(n log n)',
+            'O(log n)'
+        ],
+        'answer': 'C',
+        'explanation': 'Heap Sort has a time complexity of O(n log n) due to the heap operations.'
+    },
+    {
+        'type': 'mcq',
+        'question': 'What is the default value of a boolean array in Java?',
+        'options': [
+            'true',
+            'false',
+            '0',
+            'null'
+        ],
+        'answer': 'B',
+        'explanation': 'Boolean array elements default to `false` in Java.'
+    },
+    {
+        'type': 'mcq',
+        'question': 'How do you define an array of integers in Java?',
+        'options': [
+            'int array;',
+            'int[] array;',
+            'array int[];',
+            'integer array[];'
+        ],
+        'answer': 'B',
+        'explanation': 'In Java, arrays are declared with the type followed by square brackets, such as `int[] array`.'
+    },
+    {
+        'type': 'mcq',
+        'question': 'Which method is used to retrieve the length of an array in Java?',
+        'options': [
+            'length()',
+            'size()',
+            'getLength()',
+            'array.length'
+        ],
+        'answer': 'D',
+        'explanation': 'The `length` property (not a method) is used to get the size of an array in Java, accessed as `array.length`.'
+    },
+    {
+        'type': 'mcq',
+        'question': 'What is the purpose of the ArrayList class in Java?',
+        'options': [
+            'To create fixed-size arrays',
+            'To provide dynamic array functionality',
+            'To perform mathematical operations',
+            'To handle file I/O'
+        ],
+        'answer': 'B',
+        'explanation': 'The `ArrayList` class provides dynamic arrays that can grow or shrink in size as needed.'
+    },
+    {
+        'type': 'mcq',
+        'question': 'Which of the following is an immutable object in Java?',
+        'options': [
+            'StringBuilder',
+            'String',
+            'ArrayList',
+            'HashMap'
+        ],
+        'answer': 'B',
+        'explanation': 'Strings in Java are immutable, meaning their values cannot be changed after they are created.'
+    },
+    {
+        'type': 'mcq',
+        'question': 'What does the `charAt` method do in Java strings?',
+        'options': [
+            'Returns the length of the string',
+            'Extracts a substring',
+            'Returns the character at a specific index',
+            'Converts the string to uppercase'
+        ],
+        'answer': 'C',
+        'explanation': 'The `charAt` method returns the character at the specified index in a string.'
     },
     {
         'type': 'mcq',
@@ -1422,7 +1488,8 @@ questions = [
             'O(1)',
             'O(log n)'
         ],
-        'answer': 'O(1)'
+        'answer': 'C',
+        'explanation': 'Accessing an element by index in an ArrayList is O(1) due to direct indexing.'
     },
     {
         'type': 'mcq',
@@ -1433,6 +1500,7 @@ questions = [
             'They are slower to access',
             'They cannot store different data types'
         ],
-        'answer': 'They make code less readable and harder to maintain'
+        'answer': 'B',
+        'explanation': 'Parallel arrays can lead to code that is hard to read and maintain due to the need to keep multiple arrays in sync.'
     }
 ]
