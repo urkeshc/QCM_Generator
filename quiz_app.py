@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import messagebox, simpledialog  # Importer simpledialog pour la saisie utilisateur
+from tkinter import messagebox, simpledialog
 import random
 from questions_data import questions  # Importer les questions depuis le fichier séparé
 
@@ -13,6 +13,7 @@ class QuizApp:
         self.total_attempted = 0  # Pour calculer le pourcentage
         self.current_question = 0
         self.wrong_questions = []
+        self.selection_made = False  # Indicateur pour empêcher les sélections multiples
 
         # Copier les questions et les mélanger
         self.all_questions = questions.copy()
@@ -35,8 +36,6 @@ class QuizApp:
             self.questions = random.sample(self.all_questions, num_questions)
             self.total_questions = len(self.questions)
 
-        self.selection_made = False  # Indicateur pour empêcher les sélections multiples
-
         self.create_widgets()
         self.display_question()
 
@@ -55,18 +54,24 @@ class QuizApp:
         )
         self.question_label.pack(pady=20)
 
+        # Créer un Frame pour contenir les boutons d'options
+        self.options_frame = tk.Frame(self.master, bg="black")
+        self.options_frame.pack(pady=10)
+
         self.option_buttons = []
         for i in range(5):  # En supposant un maximum de 5 options par question
             btn = tk.Button(
-                self.master,
+                self.options_frame,
                 text="",
-                width=60,
+                width=50,          # Fixer une largeur pour les boutons
                 anchor="w",
                 font=("Arial", 12),
-                fg="white",  # Couleur du texte en blanc
-                bg="black",  # Arrière-plan en noir
-                command=lambda idx=i: self.check_answer(idx)
+                fg="white",        # Couleur du texte en blanc
+                bg="black",        # Arrière-plan en noir
+                wraplength=400,    # Gérer le retour à la ligne
+                justify="left"     # Justifier le texte à gauche
             )
+            btn.config(command=lambda idx=i: self.check_answer(idx))
             btn.pack(pady=5)
             self.option_buttons.append(btn)
 
@@ -129,8 +134,28 @@ class QuizApp:
 
             if q['type'] == 'mcq':
                 options = q['options']
-                for i, option in enumerate(options):
-                    self.option_buttons[i].config(text=f"{chr(65 + i)}. {option}", bg="black", fg="white", state="normal")
+                # Créer une liste de tuples (option_text, original_index)
+                option_list = list(enumerate(options))
+                # Mélanger les options
+                random.shuffle(option_list)
+                # Mettre à jour le mapping des options pour cette question
+                self.current_options = option_list  # Stocker les options actuelles
+                # Trouver le nouvel index de la réponse correcte
+                correct_answer = q['answer']
+                correct_index = ord(correct_answer.upper()) - ord('A')  # Convertir en index
+                # Trouver le nouvel index de la bonne réponse après le mélange
+                for new_idx, (original_idx, option_text) in enumerate(option_list):
+                    if original_idx == correct_index:
+                        self.correct_option_index = new_idx
+                        break
+                # Afficher les options mélangées
+                for i, (original_idx, option_text) in enumerate(option_list):
+                    self.option_buttons[i].config(
+                        text=f"{chr(65 + i)}. {option_text}",
+                        bg="black",
+                        fg="white",
+                        state="normal"
+                    )
                     self.option_buttons[i].pack(pady=5)
                 for i in range(len(options), 5):
                     self.option_buttons[i].pack_forget()  # Masquer les boutons inutilisés
@@ -155,7 +180,7 @@ class QuizApp:
                 # Réinitialiser le score et le total tenté pour le nouveau passage
                 self.score = 0
                 self.total_attempted = 0
-                messagebox.showinfo("Réessayer", "Nous allons maintenant réessayer les questions que vous avez mal répondues.")
+                messagebox.showinfo("Réessayer", "Nous allons maintenant réessayer les questions auxquelles vous avez mal répondu.")
                 self.display_question()
             else:
                 messagebox.showinfo("Quiz Terminé", "Vous avez répondu correctement à toutes les questions !")
@@ -165,18 +190,18 @@ class QuizApp:
         if self.selection_made:
             return  # Ignorer si une sélection a déjà été faite
         self.selection_made = True
-        selected_option = chr(65 + idx)
-        q = self.questions[self.current_question]
-        correct_answer = q['answer']
+
+        selected_option = idx  # L'index de l'option sélectionnée
         self.total_attempted += 1  # Incrémenter le total des questions tentées
 
-        if selected_option == correct_answer:
+        if selected_option == self.correct_option_index:
             self.option_buttons[idx].config(bg="green", fg="white")
             self.score += 1
             self.master.after(500, self.next_question)
         else:
             self.option_buttons[idx].config(bg="red", fg="white")
-            correct_idx = ord(correct_answer) - 65
+            # Indiquer la bonne réponse
+            correct_idx = self.correct_option_index
             if 0 <= correct_idx < len(self.option_buttons):
                 self.option_buttons[correct_idx].config(bg="green", fg="white")
             self.wrong_questions.append(self.questions[self.current_question])
@@ -220,8 +245,8 @@ class QuizApp:
 
         if event.char.lower() in ['a', 'b', 'c', 'd', 'e']:
             idx = ord(event.char.lower()) - ord('a')
-            # S'assurer que idx est dans la plage des options
-            if 0 <= idx < len(self.questions[self.current_question]['options']):
+            # S'assurer que idx est dans la plage des options affichées
+            if 0 <= idx < len(self.current_options):
                 self.check_answer(idx)
         elif event.keysym == 'Return':
             if self.next_button.winfo_ismapped():
